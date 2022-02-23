@@ -1,7 +1,9 @@
 package koo.dev.players.service;
 
 import koo.dev.players.entity.Player;
+import koo.dev.players.entity.Team;
 import koo.dev.players.repository.PlayerRepository;
+import koo.dev.players.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class PlayerService {
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
+
+    @Autowired
+    private TeamRepository teamRepository;
 
 
 
@@ -53,6 +58,13 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player player) {
+        return playerRepository.save(player);
+    }
+
+    public Player assignPlayerToTeam(Long playerId, Long teamId) {
+        Player player = playerRepository.findById(playerId).get();
+        Team team = teamRepository.findById(teamId).get();
+        player.assignToTeam(team);
         return playerRepository.save(player);
     }
 }

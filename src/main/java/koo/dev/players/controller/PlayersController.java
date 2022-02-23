@@ -25,9 +25,6 @@ public class PlayersController {
     @Autowired
     private PlayerRepository playerRepository;
 
-    @Autowired
-    private TeamRepository teamRepository;
-
 
     @GetMapping(path = "/allplayers")
     public List<Player> getPlayers() {
@@ -56,10 +53,9 @@ public class PlayersController {
     public Player assignPlayerToTeam(
             @PathVariable Long playerId,
             @PathVariable Long teamId) {
-        Player player = playerRepository.findById(playerId).get();
-        Team team =  teamRepository.findById(teamId).get();
-        player.assignToTeam(team);
-        return playerRepository.save(player);
+
+        return playerService.assignPlayerToTeam(playerId, teamId);
+
 
     }
 
