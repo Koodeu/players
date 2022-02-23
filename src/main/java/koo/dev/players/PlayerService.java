@@ -50,4 +50,11 @@ public class PlayerService {
         }
         playerRepository.deleteById(playerId);
     }
+
+    public Player addPlayer(Player player) {
+        Player playerCreated = new Player();
+        playerCreated.setNickName(player.getNickName());
+        Player saved = playerRepository.save(playerCreated);
+        return new Player(saved.getId(), saved.getNickName());
+    }
 }
