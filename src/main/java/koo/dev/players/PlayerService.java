@@ -50,6 +50,6 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player player) {
-        playerRepository.save(player);
+       return playerRepository.save(player);
     }
 }
