@@ -32,7 +32,7 @@ public class PlayersController {
         playerService.deletePlayer(playerId);
     }
 
-    @PostMapping(path="/addplyer")
+    @PostMapping(path="/addplayer")
     public Player addplayer(@RequestBody Player player){
         return playerService.addPlayer(player);
     }
