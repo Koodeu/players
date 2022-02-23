@@ -34,7 +34,7 @@ public class PlayersController {
 
     @PostMapping(path="/addplyer")
     public Player addplayer(@RequestBody Player player){
-        playerService.addPlayer(player);
+        return playerService.addPlayer(player);
     }
 
 
