@@ -25,4 +25,12 @@ public class PlayersController {
     public List<Player> findBy(@RequestParam(required = false) String query ){
         return playerService.find(query);
     }
+
+
+    @DeleteMapping(path= "{playerId}")
+    public void deletePlayer(@PathVariable("playerId") Long playerId){
+        playerService.deletePlayer(playerId);
+    }
+
 }
+

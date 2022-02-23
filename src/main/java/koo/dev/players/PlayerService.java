@@ -41,4 +41,13 @@ public class PlayerService {
                 .map(player -> new Player(player.getId(), player.getNickName()))
                 .collect(Collectors.toList());
     }
+
+    public void deletePlayer(Long playerId) {
+        boolean exists = playerRepository.existsById(playerId);
+
+        if(!exists){
+            throw  new IllegalStateException("no player with " + playerId +" Id number found.");
+        }
+        playerRepository.deleteById(playerId);
+    }
 }
