@@ -1,5 +1,7 @@
-package koo.dev.players;
+package koo.dev.players.service;
 
+import koo.dev.players.entity.Player;
+import koo.dev.players.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +19,11 @@ public class PlayerService {
     }
 
 
+
     public List<Player> getPlayers() {
         return playerRepository.findAll()
                 .stream()
-                .map(player -> new Player(player.getId(), player.getNickName()))
+                .map(player -> new Player(player.getId(), player.getTeamId(), player.getNickName()))
                 .collect(Collectors.toList());
 
 
@@ -31,12 +34,12 @@ public class PlayerService {
         if (query == null || query.isBlank()) {
             return playerRepository.findAll()
                     .stream()
-                    .map(player -> new Player(player.getId(), player.getNickName()))
+                    .map(player -> new Player(player.getId(), player.getTeamId(), player.getNickName()))
                     .collect(Collectors.toList());
         }
         return playerRepository.findByNickname(query)
                 .stream()
-                .map(player -> new Player(player.getId(), player.getNickName()))
+                .map(player -> new Player(player.getId(), player.getTeamId(), player.getNickName()))
                 .collect(Collectors.toList());
     }
 
@@ -50,6 +53,6 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player player) {
-       return playerRepository.save(player);
+        return playerRepository.save(player);
     }
 }

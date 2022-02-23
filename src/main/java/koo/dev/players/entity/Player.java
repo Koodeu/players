@@ -1,4 +1,4 @@
-package koo.dev.players;
+package koo.dev.players.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -19,15 +19,13 @@ import javax.persistence.Id;
 public class Player {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long teamId;
     private String nickName;
 
-
-    public Player(String nickName) {
+    public Player(String nickName, Long teamId) {
         this.nickName = nickName;
+        this.teamId = teamId;
     }
-
-
-
 }

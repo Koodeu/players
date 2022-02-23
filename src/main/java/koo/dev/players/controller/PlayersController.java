@@ -1,5 +1,7 @@
-package koo.dev.players;
+package koo.dev.players.controller;
 
+import koo.dev.players.entity.Player;
+import koo.dev.players.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ public class PlayersController {
         this.playerService = playerService;
     }
 
+
     @GetMapping(path = "/allplayers")
     public List<Player> getPlayers() {
         return playerService.getPlayers();
@@ -33,12 +36,15 @@ public class PlayersController {
         playerService.deletePlayer(playerId);
     }
 
-    @PostMapping(path = "addplayer", produces = MediaType.APPLICATION_JSON_VALUE,
-    consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/addplayer", produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     public Player addplayer(@RequestBody Player player) {
         return playerService.addPlayer(player);
     }
 
 
 }
+
+
+
 

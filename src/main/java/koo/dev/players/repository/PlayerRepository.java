@@ -1,5 +1,6 @@
-package koo.dev.players;
+package koo.dev.players.repository;
 
+import koo.dev.players.entity.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
