@@ -1,6 +1,7 @@
 package koo.dev.players;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,24 +18,25 @@ public class PlayersController {
     }
 
     @GetMapping(path = "/allplayers")
-    public List<Player> getPlayers(){
-       return playerService.getPlayers();
+    public List<Player> getPlayers() {
+        return playerService.getPlayers();
     }
 
     @GetMapping(path = "/player") //http://localhost:8080/player?query=koodeu
-    public List<Player> findBy(@RequestParam(required = false) String query ){
+    public List<Player> findByNickname(@RequestParam(required = false) String query) {
         return playerService.find(query);
     }
 
 
-    @DeleteMapping(path= "{playerId}")
-    public void deletePlayer(@PathVariable("playerId") Long playerId){
+    @DeleteMapping(path = "{playerId}")
+    public void deletePlayer(@PathVariable("playerId") Long playerId) {
         playerService.deletePlayer(playerId);
     }
 
-    @PostMapping(path="/addplyer")
-    public Player addplayer(@RequestBody Player player){
-        playerService.addPlayer(player);
+    @PostMapping(path = "addplayer", produces = MediaType.APPLICATION_JSON_VALUE,
+    consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Player addplayer(@RequestBody Player player) {
+        return playerService.addPlayer(player);
     }
 
 

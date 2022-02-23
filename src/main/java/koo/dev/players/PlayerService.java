@@ -52,9 +52,12 @@ public class PlayerService {
     }
 
     public Player addPlayer(Player player) {
-        Player playerCreated = new Player();
-        playerCreated.setNickName(player.getNickName());
-        Player saved = playerRepository.save(playerCreated);
-        return new Player(saved.getId(), saved.getNickName());
-    }
+
+        playerRepository.save(player)
+
+//        Player playerCreated = new Player();
+//        playerCreated.setNickName(player.getNickName());
+//        Player saved = playerRepository.save(playerCreated);
+//        return new Player(saved.getId(), saved.getNickName());
+//    }
 }
