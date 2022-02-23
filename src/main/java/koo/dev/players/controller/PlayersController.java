@@ -1,6 +1,9 @@
 package koo.dev.players.controller;
 
 import koo.dev.players.entity.Player;
+import koo.dev.players.entity.Team;
+import koo.dev.players.repository.PlayerRepository;
+import koo.dev.players.repository.TeamRepository;
 import koo.dev.players.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,6 +21,12 @@ public class PlayersController {
     public PlayersController(PlayerService playerService) {
         this.playerService = playerService;
     }
+
+    @Autowired
+    private PlayerRepository playerRepository;
+
+    @Autowired
+    private TeamRepository teamRepository;
 
 
     @GetMapping(path = "/allplayers")
@@ -42,6 +51,17 @@ public class PlayersController {
         return playerService.addPlayer(player);
     }
 
+
+    @PutMapping("/{playerId}/player/{teamId}")
+    public Player assignPlayerToTeam(
+            @PathVariable Long playerId,
+            @PathVariable Long teamId) {
+        Player player = playerRepository.findById(playerId).get();
+        Team team =  teamRepository.findById(teamId).get();
+        player.assignToTeam(team);
+        return playerRepository.save(player);
+
+    }
 
 }
 

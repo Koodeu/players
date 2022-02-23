@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -21,11 +18,27 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long teamId;
     private String nickName;
 
-    public Player(String nickName, Long teamId) {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id", referencedColumnName = "id")
+    private Team team;
+
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public Player(String nickName) {
         this.nickName = nickName;
-        this.teamId = teamId;
+
+    }
+    public Player(Long id, String nickName) {
+        this.id = id;
+        this.nickName = nickName;
+    }
+
+    public void assignToTeam(Team team) {
+        this.team = team;
     }
 }

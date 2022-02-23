@@ -19,9 +19,9 @@ public class PlayerConfig {
         return args -> {
             	List<Player> teamOfPlayers = new ArrayList<>();
 
-            Player player1 = new Player("koodeu", 1L);
-            Player player2 = new Player("lester", 1L);
-            Player player3 = new Player("rocker", 1L);
+            Player player1 = new Player("koodeu");
+            Player player2 = new Player("lester");
+            Player player3 = new Player("rocker");
 
             teamOfPlayers.add(player1);
             teamOfPlayers.add(player2);
