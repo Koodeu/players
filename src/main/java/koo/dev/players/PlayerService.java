@@ -17,8 +17,6 @@ public class PlayerService {
     }
 
 
-
-
     public List<Player> getPlayers() {
         return playerRepository.findAll()
                 .stream()
@@ -30,7 +28,7 @@ public class PlayerService {
 
 
     public List<Player> find(String query) {
-        if (query==null || query.isBlank()){
+        if (query == null || query.isBlank()) {
             return playerRepository.findAll()
                     .stream()
                     .map(player -> new Player(player.getId(), player.getNickName()))
@@ -45,19 +43,13 @@ public class PlayerService {
     public void deletePlayer(Long playerId) {
         boolean exists = playerRepository.existsById(playerId);
 
-        if(!exists){
-            throw  new IllegalStateException("no player with " + playerId +" Id number found.");
+        if (!exists) {
+            throw new IllegalStateException("no player with " + playerId + " Id number found.");
         }
         playerRepository.deleteById(playerId);
     }
 
     public Player addPlayer(Player player) {
-
-        playerRepository.save(player)
-
-//        Player playerCreated = new Player();
-//        playerCreated.setNickName(player.getNickName());
-//        Player saved = playerRepository.save(playerCreated);
-//        return new Player(saved.getId(), saved.getNickName());
-//    }
+        playerRepository.save(player);
+    }
 }
