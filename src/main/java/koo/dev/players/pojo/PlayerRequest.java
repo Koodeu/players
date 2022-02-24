@@ -1,4 +1,4 @@
-package pojo;
+package koo.dev.players.pojo;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,14 +1,12 @@
 package koo.dev.players.controller;
 
 import koo.dev.players.entity.Player;
-import koo.dev.players.entity.Team;
 import koo.dev.players.repository.PlayerRepository;
-import koo.dev.players.repository.TeamRepository;
 import koo.dev.players.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pojo.PlayerRequest;
+import koo.dev.players.pojo.PlayerRequest;
 
 import java.util.List;
 

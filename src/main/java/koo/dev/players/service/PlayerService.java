@@ -6,7 +6,7 @@ import koo.dev.players.repository.PlayerRepository;
 import koo.dev.players.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pojo.PlayerRequest;
+import koo.dev.players.pojo.PlayerRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
