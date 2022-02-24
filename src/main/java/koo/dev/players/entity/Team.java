@@ -23,8 +23,11 @@ public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "team_coach_name")
     private String coachName;
+    @Column(name =  "team_name")
     private String teamName;
 
     @JsonIgnore
@@ -41,5 +44,13 @@ public class Team {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id=" + id +
+                ", coachName='" + coachName + '\'' +
+                ", teamName='" + teamName + '\'' +
+                ", teamMembers=" + teamMembers +
+                '}';
+    }
 }

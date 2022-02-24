@@ -17,7 +17,9 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "player_nickname")
     private String nickName;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -39,6 +41,11 @@ public class Player {
     }
 
     public void assignToTeam(Team team) {
+        this.team = team;
+    }
+
+    public Player(String nickName, Team team) {
+        this.nickName = nickName;
         this.team = team;
     }
 }

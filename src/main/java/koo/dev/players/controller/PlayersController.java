@@ -8,6 +8,7 @@ import koo.dev.players.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import pojo.PlayerRequest;
 
 import java.util.List;
 
@@ -55,9 +56,14 @@ public class PlayersController {
             @PathVariable Long teamId) {
 
         return playerService.assignPlayerToTeam(playerId, teamId);
+    }
 
+    @PostMapping(path = "savePlayerWithTeam", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Player savePlayerWithTeam(@RequestBody PlayerRequest playerRequest){
+            return playerService.savePlayerWithTeam(playerRequest);
 
     }
+
 
 }
 

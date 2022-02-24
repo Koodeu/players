@@ -6,6 +6,7 @@ import koo.dev.players.repository.PlayerRepository;
 import koo.dev.players.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pojo.PlayerRequest;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,11 +25,10 @@ public class PlayerService {
     private TeamRepository teamRepository;
 
 
-
     public List<Player> getPlayers() {
         return playerRepository.findAll()
                 .stream()
-                .map(player -> new Player(player.getId(), player.getNickName()))
+                .map(player -> new Player(player.getId(), player.getNickName(), player.getTeam()))
                 .collect(Collectors.toList());
 
 
@@ -39,12 +39,12 @@ public class PlayerService {
         if (query == null || query.isBlank()) {
             return playerRepository.findAll()
                     .stream()
-                    .map(player -> new Player(player.getId(), player.getNickName()))
+                    .map(player -> new Player(player.getId(), player.getNickName(), player.getTeam()))
                     .collect(Collectors.toList());
         }
         return playerRepository.findByNickname(query)
                 .stream()
-                .map(player -> new Player(player.getId(), player.getNickName()))
+                .map(player -> new Player(player.getId(), player.getNickName(), player.getTeam()))
                 .collect(Collectors.toList());
     }
 
@@ -65,6 +65,14 @@ public class PlayerService {
         Player player = playerRepository.findById(playerId).get();
         Team team = teamRepository.findById(teamId).get();
         player.assignToTeam(team);
+        return playerRepository.save(player);
+    }
+
+    public Player savePlayerWithTeam(PlayerRequest playerRequest) {
+        Team team = teamRepository.findTeamById(playerRequest.getTeamId());
+        Player player = new Player();
+        player.setNickName(playerRequest.getPlayerNickname());
+        player.setTeam(team);
         return playerRepository.save(player);
     }
 }
