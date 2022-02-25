@@ -48,4 +48,5 @@ public class Player {
         this.nickName = nickName;
         this.team = team;
     }
+
 }

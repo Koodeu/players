@@ -28,7 +28,7 @@ public class PlayerService {
     public List<Player> getPlayers() {
         return playerRepository.findAll()
                 .stream()
-                .map(player -> new Player(player.getId(), player.getNickName(), player.getTeam()))
+                .map(player -> new Player(player.getId(),player.getNickName(), player.getTeam()))
                 .collect(Collectors.toList());
 
 

@@ -34,8 +34,6 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private Set<Player> teamMembers = new HashSet<>();
 
-//    @ElementCollection
-//    private List<Player> listOfPlayers;
 
 
     public Team(String coachName, String teamName) {
